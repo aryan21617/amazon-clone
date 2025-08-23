@@ -1,6 +1,8 @@
 import { cart , deleteCartItem} from '../data/cart.js';
 import { product } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+import { deliveryOptions } from '../data/deliveryOption.js';
 
 
 let cartSummaryHTML = ''
@@ -94,6 +96,26 @@ cart.forEach((cartItem) => {
 
 
 });
+
+function deliveryOptionsHTML() {
+  deliveryOptions.forEach((deliveryOption) => {
+   `
+    <div class="delivery-option">
+          <input type="radio"
+            class="delivery-option-input"
+            name="delivery-option-${matchingProduct.id}">
+          <div>
+            <div class="delivery-option-date">
+              Monday, June 13
+            </div>
+            <div class="delivery-option-price">
+              $9.99 - Shipping
+            </div>
+          </div>
+        </div>
+   `
+  });
+}
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
